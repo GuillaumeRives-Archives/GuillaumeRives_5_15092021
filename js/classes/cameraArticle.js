@@ -23,7 +23,7 @@ class CameraArticle {
         image.className = "card-img-top";
         articleBody.className = "card-body";
         title.className = "card-title";
-        price.className = "card-text";
+        price.classList = "card-text text-muted fst-italic";
         button.classList = "btn btn-primary d-block w-100 mt-2";
 
         //Peuplement des éléments avec leurs valeurs
