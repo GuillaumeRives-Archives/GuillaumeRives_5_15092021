@@ -14,7 +14,7 @@ class CameraArticle {
         const article = document.createElement("article");
         const image = document.createElement("img");
         const articleBody = document.createElement("div");
-        const title = document.createElement("h5");
+        const title = document.createElement("h2");
         const price = document.createElement("span");
         const button = document.createElement("a");
 
@@ -22,7 +22,7 @@ class CameraArticle {
         article.classList = "card shadow-sm mt-3 rounded-3 p-1";
         image.className = "card-img-top";
         articleBody.className = "card-body";
-        title.className = "card-title";
+        title.classList = "card-title fs-5";
         price.classList = "card-text text-muted fst-italic";
         button.classList = "btn btn-primary d-block w-100 mt-2";
 
