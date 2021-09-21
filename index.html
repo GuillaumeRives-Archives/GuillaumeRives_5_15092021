@@ -35,7 +35,7 @@
     <main class="flex-grow-1">
         <section class="container text-center pt-5">
             <i class="bi bi-camera2 fs-1 text-primary"></i>
-            <h1 class="text-dark fw-normal">Toutes nos caméras argentiques</h1>
+            <h1 class="text-dark fw-normal">Tous nos appareils argentiques</h1>
             <p class="text-secondary m-auto">
                 Redécouvrez le plaisir de prendre des photos avec notre sélection d'appareils argentiques, faites un
                 retour dans le temps pour retrouver ce style si particulier propre au passé qu'est l'argentique !
@@ -43,8 +43,11 @@
             <p class="text-secondary m-auto pt-2">
                 Etes-vous prêt ? Faites votre choix parmis cette selection que nous vous avons préparée.
             </p>
+            <data value="0" id="nbProducts" class="d-none">
+                0 appareils dispo
+            </data>
         </section>
-        <section id="cameras" class="container d-md-flex justify-content-around flex-wrap py-5">
+        <section id="cameras" class="container d-md-flex justify-content-around flex-wrap py-3">
             <!-- Peuplé par index.js -->
         </section>
     </main>
@@ -68,6 +71,7 @@
     <script src="js/classes/connector.js"></script>
     <script src="js/classes/cameraArticle.js"></script>
     <script src="js/classes/alert.js"></script>
+    <script src="js/classes/productsBadge.js"></script>
     <script src="js/index.js"></script>
 </body>
 
