@@ -32,7 +32,7 @@ class CameraArticle {
         image.height = 150;
         title.textContent = this.name;
         price.textContent = this.price / 100 + "€";
-        button.href = "panier.html?id=" + this.id;
+        button.href = "produit.html?id=" + this.id;
         button.textContent = "En savoir plus";
 
         //Constitution de la hierarchie des éléments
