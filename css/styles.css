@@ -9,7 +9,32 @@ img {
 }
 
 @media screen and (min-width: 768px) {
-  .card > img {
+  #cameras > .card > img {
     width: 230px;
   }
+}
+
+#imgContainer {
+  position: relative;
+}
+#imgContainer > img {
+  height: 200px;
+}
+
+#imgOverlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(0deg, white 0%, rgba(255, 255, 255, 0) 100%);
+  backdrop-filter: blur(60px);
+}
+
+#camInfo {
+  position: relative;
+  top: -100px;
+}
+
+#cardContent {
+  border: none;
 }/*# sourceMappingURL=styles.css.map */
