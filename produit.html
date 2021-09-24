@@ -53,28 +53,38 @@
                             <p class="card-text" id="prodDesc">
                                 <!--Peuplé par produit.js-->
                             </p>
-                            <span class="text-success fs-5 fst-italic flex-grow-1" id="prodPrice">
+                            <span class="text-danger fw-bold fs-5 flex-grow-1 align-self-end mb-2" id="prodPrice">
                                 <!--Peuplé par produit.js-->
                             </span>
-                            <div class="input-group">
-                                <span class="input-group-text">Option</span>
-                                <select class="form-select col-auto" aria-label="Option d'achat" id="prodOptions">
-                                    <option selected value="0">Sans option</option>
-                                </select>
-                                <span class="input-group-text">Quantité</span>
-                                <select class="form-select col-auto" aria-label="Quantité" id="prodQuantity">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                                <button id="addButton" class="btn btn-primary col-auto">Ajouter au panier</button>
+                            <div class="row">
+                                <div class="col col-lg-5 offset-lg-7">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Option</span>
+                                        <select class="form-select" aria-label="Option d'achat" id="prodOptions">
+                                            <option selected value="0">Sans option</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col col-lg-5 offset-lg-7">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Quantité</span>
+                                        <select class="form-select" aria-label="Quantité" id="prodQuantity">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                        <button id="addButton" class="btn btn-primary">Ajouter</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,9 +100,21 @@
             <span class="text-muted">&copy; 2021 Orinocam</span>
         </div>
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"></i></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"></i></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"></i></a></li>
+            <li class="ms-3">
+                <a class="text-muted" href="https://www.twitter.com" target="_blank">
+                    <i class="bi bi-twitter"></i>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-muted" href="https://www.instagram.com" target="_blank">
+                    <i class="bi bi-instagram"></i>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-muted" href="https://www.facebook.com" target="_blank">
+                    <i class="bi bi-facebook"></i>
+                </a>
+            </li>
         </ul>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
