@@ -28,6 +28,16 @@ class cart {
 
     }
 
+    //Récupère tous les articles du panier
+    getAllItems() {
+        let localCart = [];
+        if (localStorage.cart) {
+            localCart = JSON.parse(localStorage.cart);
+        }
+        return localCart;
+    }
+
+    //Récupère le nombre total d'items dans le panier
     getItemsCount() {
         let localCart = [];
         if (localStorage.cart) {
@@ -45,6 +55,7 @@ class cart {
     }
 }
 
+//Classe d'un objet présent dans le panier
 class cartItem {
     set(id, quantity) {
         this.id = id;

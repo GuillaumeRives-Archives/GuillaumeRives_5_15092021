@@ -1,3 +1,6 @@
+//Création de l'objet Connector pour requêter l'API
+const APIConn = new Connector();
+
 //Récupère et affiche le nombre d'articles dans le panier
 const Cart = new cart();
 
