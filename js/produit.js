@@ -50,7 +50,7 @@ requestedCam.then(response => {
         });
         card.classList = "card p-2 shadow";
         //Création d'un élément à rajouter au panier
-        CartItem.set(response._id, response.name, response.price, response.imageUrl, 1);
+        CartItem.set(response._id, 1);
     } else {
         //Sinon, on inscrit le code erreur dans la console et sur la page
         console.log("ERROR : " + response);

@@ -46,11 +46,8 @@ class cart {
 }
 
 class cartItem {
-    set(id, name, price, image, quantity) {
+    set(id, quantity) {
         this.id = id;
-        this.name = name;
-        this.price = price;
-        this.image = image;
         this.quantity = quantity;
     }
 }
