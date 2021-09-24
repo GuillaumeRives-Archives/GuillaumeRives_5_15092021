@@ -1,6 +1,14 @@
 //Création de l'objet Connector pour requêter l'API
 const APIConn = new Connector();
 
+//Création de l'objet panier pour manipuler le panier
+const Cart = new cart();
+const CartItem = new cartItem();
+
+//Récupère et affiche le nombre d'articles dans le panier
+const nbArticles = document.getElementById("nbArticles");
+nbArticles.textContent = Cart.getItemsCount()
+
 //Récupère les paramètres d'URL
 const URLParams = new URLSearchParams(window.location.search);
 const ProdID = URLParams.get("id");
@@ -17,25 +25,23 @@ requestedCam.then(response => {
         const prodTitle = document.getElementById("prodTitle");
         const prodDesc = document.getElementById("prodDesc");
         const prodPrice = document.getElementById("prodPrice");
-        const prodOptions = document.getElementById("camOptionsItems");
-        const addButton = document.getElementById("addButton");
+        const prodOptions = document.getElementById("prodOptions");
         backImage.src = response.imageUrl;
         descImage.src = response.imageUrl;
         prodTitle.textContent = response.name;
         prodDesc.textContent = response.description;
         prodPrice.textContent = response.price / 100 + "€";
-        addButton.href = "panier.html?id=" + response._id;
+        let optionIndex = 1;
         response.lenses.forEach(option => {
-            const item = document.createElement("li");
-            const link = document.createElement("a");
-            item.appendChild(link);
-            link.className = "dropdown-item";
-            link.href = "#";
-            link.setAttribute("onclick", "showOption(this)");
-            link.textContent = option
-            prodOptions.appendChild(item);
+            const optionTag = document.createElement("option");
+            optionTag.value = optionIndex;
+            optionTag.textContent = option;
+            prodOptions.appendChild(optionTag);
+            optionIndex++;
         });
         card.classList = "card p-2 shadow";
+        //Création d'un élément à rajouter au panier
+        CartItem.set(response._id, response.name, response.price, response.imageUrl, 1);
     } else {
         //Sinon, on inscrit le code erreur dans la console et sur la page
         console.log("ERROR : " + response);
@@ -46,8 +52,11 @@ requestedCam.then(response => {
     }
 });
 
-//Affichage des options
-function showOption(element) {
-    const camOptionsButton = document.getElementById("camOptions");
-    camOptionsButton.textContent = element.textContent;
-}
+//Ajout dans le panier
+const addButton = document.getElementById("addButton");
+const quantity = document.getElementById("prodQuantity");
+addButton.addEventListener("click", function () {
+    CartItem.quantity = parseInt(quantity.value, 10);
+    Cart.addItem(CartItem);
+    nbArticles.textContent = Cart.getItemsCount()
+});
