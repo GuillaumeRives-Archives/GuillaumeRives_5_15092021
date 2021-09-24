@@ -37,4 +37,15 @@ img {
 
 #cardContent {
   border: none;
+}
+
+#panierList > div > img {
+  width: 100%;
+  height: 150px;
+}
+@media screen and (min-width: 576px) {
+  #panierList > div > img {
+    width: 70px;
+    height: 70px;
+  }
 }/*# sourceMappingURL=styles.css.map */

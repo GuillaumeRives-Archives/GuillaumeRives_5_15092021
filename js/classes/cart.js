@@ -9,7 +9,7 @@ class cart {
         if (localCart.length) {
             let modified = false;
             localCart.forEach(element => {
-                if (element.id == item.id) {
+                if (element.id === item.id) {
                     element.quantity += item.quantity;
                     modified = true;
                 }
@@ -25,7 +25,21 @@ class cart {
     }
 
     removeItem(id) {
-
+        //Récupération du panier dans le localStorage
+        let localCart = [];
+        if (localStorage.cart) {
+            localCart = JSON.parse(localStorage.cart);
+        }
+        localCart.forEach(function (element, index) {
+            if (element.id === id) {
+                localCart.splice(index, 1);
+            }
+        });
+        if (localCart.length) {
+            localStorage.setItem("cart", JSON.stringify(localCart));
+        } else {
+            localStorage.removeItem("cart");
+        }
     }
 
     //Récupère tous les articles du panier

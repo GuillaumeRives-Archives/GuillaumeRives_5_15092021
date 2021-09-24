@@ -22,7 +22,7 @@ displayNbArticles(nbArticles);
 const URLParams = new URLSearchParams(window.location.search);
 const ProdID = URLParams.get("id");
 
-//Création d'une requete de récupération de tous les appareils
+//Création d'une requete de récupération d'un appareil par son ID
 const requestedCam = APIConn.getCamById(ProdID);
 
 requestedCam.then(response => {
@@ -53,8 +53,8 @@ requestedCam.then(response => {
         CartItem.set(response._id, 1);
     } else {
         //Sinon, on inscrit le code erreur dans la console et sur la page
-        console.log("ERROR : " + response);
-        let errMessage = new Alert(response, "alert-danger");
+        console.error("Erreur au chargement du produit");
+        let errMessage = new Alert("Oups, une erreur est survenue", "Le produit n'existe peut-être plus ou nous rencontrons un problème...");
         const card = document.getElementById("cardContent");
         card.classList = "card p-2 shadow d-none";
         errMessage.appendTo("camInfo");

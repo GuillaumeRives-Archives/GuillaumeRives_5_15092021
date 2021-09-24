@@ -43,8 +43,8 @@ requestCams.then(response => {
 
     } else {
         //Sinon, on inscrit le code erreur dans la console et sur la page
-        console.log("ERROR : " + response);
-        let errMessage = new Alert(response, "alert-danger");
+        console.error("Erreur au chargement des produits");
+        let errMessage = new Alert("Oups, une erreur est survenue", "Nous n'avons plus de produits disponibles ou nous rencontrons un problème...");
         errMessage.appendTo("cameras");
     }
 })

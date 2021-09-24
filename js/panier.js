@@ -1,9 +1,10 @@
 //Création de l'objet Connector pour requêter l'API
 const APIConn = new Connector();
 
-//Récupère et affiche le nombre d'articles dans le panier
+//Création de l'objet de gestion du panier
 const Cart = new cart();
 
+//Récupère et affiche le nombre d'articles dans le panier
 function displayNbArticles(target) {
     let nbArticlesCount = Cart.getItemsCount();
     if (nbArticlesCount) {
@@ -15,3 +16,72 @@ function displayNbArticles(target) {
 }
 const nbArticles = document.getElementById("nbArticles");
 displayNbArticles(nbArticles);
+
+///////////////////////
+//Affichage du panier//
+///////////////////////
+function displayCart() {
+    //Récupération des items du panier
+    let cartItems = Cart.getAllItems();
+    //Récupération de la cible pour l'affichage du panier
+    const target = document.getElementById("panierList");
+    //Variable pour le prix total
+    target.innerHTML = "";
+
+    let totalPrice = 0;
+    if (cartItems.length) {
+        cartItems.forEach(element => {
+            //Création des éléments d'un item
+            const itemContainer = document.createElement("div");
+            const img = document.createElement("img");
+            const title = document.createElement("h5");
+            const price = document.createElement("p");
+            const quantity = document.createElement("p");
+            const button = document.createElement("button");
+            //Ajout des classes aux éléments
+            itemContainer.classList = "p-2 col-sm-12 bg-white border rounded shadow-sm mt-3 d-flex flex-column flex-sm-row";
+            img.classList = "rounded border mx-auto d-block";
+            title.classList = "flex-grow-1 align-self-center m-2";
+            price.classList = "flex-grow-1 align-self-center m-2";
+            quantity.classList = "flex-grow-1 align-self-center m-2";
+            button.classList = "btn btn-danger";
+            button.textContent = "Supprimer";
+            //Hierarchisation des éléments
+            itemContainer.appendChild(img);
+            itemContainer.appendChild(title);
+            itemContainer.appendChild(price);
+            itemContainer.appendChild(quantity);
+            itemContainer.appendChild(button);
+            //Récupération des informations de la caméra à partir de son ID
+            const requestedCam = APIConn.getCamById(element.id);
+            requestedCam.then(response => {
+                if (response._id) {
+                    //Mise à jour du prix total
+                    totalPrice += (response.price * element.quantity);
+                    //Peuplement des valeurs des éléments créés
+                    img.src = response.imageUrl;
+                    img.alt = response.name;
+                    title.textContent = response.name;
+                    price.textContent = "Prix unitaire " + response.price / 100 + "€";
+                    quantity.textContent = "Quantité " + element.quantity;
+                    button.setAttribute("onclick", "removeItem('" + element.id + "')");
+                    target.appendChild(itemContainer);
+                }
+            });
+        });
+    } else {
+        //Sinon, on inscrit le code erreur dans la console et sur la page
+        console.warn("Panier vide !");
+        let errMessage = new Alert("Oh non ! Votre panier est vide !", "Faites vite le plein en consultant notre sélection d'appareils !");
+        errMessage.appendTo("panierList", 1);
+    }
+}
+//Affichage du panier
+displayCart()
+
+//Fonction du suppression d'un item du panier
+function removeItem(id) {
+    Cart.removeItem(id);
+    displayCart();
+    displayNbArticles(nbArticles);
+}
