@@ -67,6 +67,23 @@ class cart {
             return 0;
         }
     }
+
+    //Récupère les ID des produits à commander
+    getIdsForOrder() {
+        let localCart = [];
+        let products = [];
+        if (localStorage.cart) {
+            localCart = JSON.parse(localStorage.cart);
+        }
+        if (localCart.length) {
+            localCart.forEach(element => {
+                for (let i = 0; i < element.quantity; i++) {
+                    products.push(element.id);
+                }
+            });
+        }
+        return products;
+    }
 }
 
 //Classe d'un objet présent dans le panier

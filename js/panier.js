@@ -89,7 +89,7 @@ function displayCart() {
         totalPriceDisplay.forEach(element => {
             element.className = "d-none";
         });
-        const form = document.getElementById("orderForm");
+        const form = document.getElementById("orderFormContainer");
         form.innerHTML = "";
     }
 }
@@ -102,3 +102,29 @@ function removeItem(id) {
     displayCart();
     displayNbArticles(nbArticles);
 }
+
+//////////////////////////
+// ENVOI D'UNE COMMANDE //
+//////////////////////////
+const orderBtn = document.getElementById("orderBtn");
+orderBtn.addEventListener("click", function (event) {
+    event.preventDefault;
+    const orderForm = document.getElementById("orderForm");
+    if (orderForm.checkValidity()) {
+        //Envoi d'une requete POST de commande
+        let contact = new Object();
+        contact.firstName = document.getElementById("prenom").value;
+        contact.lastName = document.getElementById("nom").value;
+        contact.address = document.getElementById("adresse").value;
+        contact.city = document.getElementById("ville").value;
+        contact.email = document.getElementById("email").value;
+
+        let products = Cart.getIdsForOrder();
+
+        const request = APIConn.order(contact, products);
+        request.then(response => {
+            localStorage.order = JSON.stringify(response);
+            window.location = "confirmation.html";
+        })
+    }
+})

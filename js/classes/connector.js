@@ -17,4 +17,21 @@ class Connector {
             .then(response => response.json())
             .catch(error => error.message);
     }
+
+    order(contact, products) {
+        const data = {
+            "contact": contact,
+            "products": products
+        }
+        console.log(data);
+        return fetch(this.url + "/order", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .catch(error => error.message);
+    }
 }

@@ -46,11 +46,11 @@
             </div>
             <h2 class="fs-5 fw-normal mt-4 text-success totalPrice"></h2>
         </section>
-        <section class="container" id="orderForm">
+        <section class="container" id="orderFormContainer">
             <p class="mt-4 text-center fs-6">
                 Afin que nous puissions traiter votre commande, merci de renseigner les informations ci-dessous.
             </p>
-            <form class="row">
+            <form class="row" id="orderForm">
                 <div class="col-md-4 mb-3">
                     <label for="prenom">Prénom</label>
                     <input type="text" class="form-control" id="prenom" placeholder="Prénom" pattern="[\D]*" required>
@@ -72,7 +72,7 @@
                     <input type="text" class="form-control" id="ville" placeholder="Ville" pattern="[\D]*" required>
                 </div>
                 <div class="col-12 text-center mb-5">
-                    <button class="btn btn-primary w-25" type="submit">Commandez</button>
+                    <button class="btn btn-primary w-25" type="submit" id="orderBtn">Commandez</button>
                 </div>
             </form>
         </section>
