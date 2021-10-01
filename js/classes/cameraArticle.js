@@ -31,7 +31,10 @@ class CameraArticle {
         image.alt = this.name;
         image.height = 150;
         title.textContent = this.name;
-        price.textContent = this.price / 100 + "€";
+        price.textContent = new Intl.NumberFormat('fr-FR', {
+            style: 'currency',
+            currency: 'EUR'
+        }).format(this.price / 100);
         button.href = "produit.html?id=" + this.id;
         button.textContent = "En savoir plus";
 

@@ -43,7 +43,10 @@ requestedCam.then(response => {
         descImage.src = response.imageUrl;
         prodTitle.textContent = response.name;
         prodDesc.textContent = response.description;
-        prodPrice.textContent = response.price / 100 + "€";
+        prodPrice.textContent = new Intl.NumberFormat('fr-FR', {
+            style: 'currency',
+            currency: 'EUR'
+        }).format(response.price / 100);
         let optionIndex = 1;
         response.lenses.forEach(option => {
             const optionTag = document.createElement("option");

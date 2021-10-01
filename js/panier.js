@@ -72,14 +72,20 @@ function displayCart() {
                     img.src = response.imageUrl;
                     img.alt = response.name;
                     title.textContent = response.name;
-                    price.textContent = "Prix unitaire " + response.price / 100 + "€";
+                    price.textContent = "Prix unitaire " + new Intl.NumberFormat('fr-FR', {
+                        style: 'currency',
+                        currency: 'EUR'
+                    }).format(response.price / 100);
                     quantity.textContent = "Quantité " + element.quantity;
                     button.setAttribute("onclick", "removeItem('" + element.id + "')");
                     target.appendChild(itemContainer);
 
                     //Affichage du prix total
                     totalPriceDisplay.forEach(element => {
-                        element.textContent = "Sous-total (" + totalArticles + " articles) : " + totalPrice / 100 + "€"
+                        element.textContent = "Sous-total (" + totalArticles + " articles) : " + new Intl.NumberFormat('fr-FR', {
+                            style: 'currency',
+                            currency: 'EUR'
+                        }).format(totalPrice / 100);
                     });
 
                     //Affichage du formulaire
