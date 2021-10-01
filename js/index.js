@@ -7,6 +7,9 @@ const requestCams = APIConn.getAllCams();
 //Récupère et affiche le nombre d'articles dans le panier
 const Cart = new cart();
 
+//Récupère le loader
+const loader = document.getElementById("loader");
+
 function displayNbArticles(target) {
     let nbArticlesCount = Cart.getItemsCount();
     if (nbArticlesCount) {
@@ -21,6 +24,8 @@ displayNbArticles(nbArticles);
 
 //Lorsque la réponse est récupérée
 requestCams.then(response => {
+    //Suppression du loader
+    loader.remove();
     //S'il s'agit d'un tableau de résultats
     if (Array.isArray(response)) {
         //On affiche chaque caméra sur la page

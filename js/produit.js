@@ -5,6 +5,9 @@ const APIConn = new Connector();
 const Cart = new cart();
 const CartItem = new cartItem();
 
+//Récupération du loader
+const loader = document.getElementById("loader");
+
 //Récupère et affiche le nombre d'articles dans le panier
 function displayNbArticles(target) {
     let nbArticlesCount = Cart.getItemsCount();
@@ -26,6 +29,7 @@ const ProdID = URLParams.get("id");
 const requestedCam = APIConn.getCamById(ProdID);
 
 requestedCam.then(response => {
+    loader.remove();
     if (response._id) {
         //Récupération des éléments de la page à peupler
         const card = document.getElementById("cardContent");

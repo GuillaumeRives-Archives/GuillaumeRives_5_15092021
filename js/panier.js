@@ -4,6 +4,12 @@ const APIConn = new Connector();
 //Création de l'objet de gestion du panier
 const Cart = new cart();
 
+//Récupération du formulaire
+const form = document.getElementById("orderForm");
+
+//Récupération du loader
+const loader = document.getElementById("loader");
+
 //Récupère et affiche le nombre d'articles dans le panier
 function displayNbArticles(target) {
     let nbArticlesCount = Cart.getItemsCount();
@@ -75,6 +81,10 @@ function displayCart() {
                     totalPriceDisplay.forEach(element => {
                         element.textContent = "Sous-total (" + totalArticles + " articles) : " + totalPrice / 100 + "€"
                     });
+
+                    //Affichage du formulaire
+                    form.classList = "row";
+                    loader.remove();
                 }
             });
         });
@@ -89,8 +99,8 @@ function displayCart() {
         totalPriceDisplay.forEach(element => {
             element.className = "d-none";
         });
-        const form = document.getElementById("orderFormContainer");
-        form.innerHTML = "";
+        form.classList = "row d-none";
+        loader.remove();
     }
 }
 //Affichage du panier
@@ -107,24 +117,26 @@ function removeItem(id) {
 // ENVOI D'UNE COMMANDE //
 //////////////////////////
 const orderBtn = document.getElementById("orderBtn");
-orderBtn.addEventListener("click", function (event) {
-    event.preventDefault;
-    const orderForm = document.getElementById("orderForm");
-    if (orderForm.checkValidity()) {
-        //Envoi d'une requete POST de commande
-        let contact = new Object();
-        contact.firstName = document.getElementById("prenom").value;
-        contact.lastName = document.getElementById("nom").value;
-        contact.address = document.getElementById("adresse").value;
-        contact.city = document.getElementById("ville").value;
-        contact.email = document.getElementById("email").value;
+if (orderBtn) {
+    orderBtn.addEventListener("click", function (event) {
+        event.preventDefault;
+        const orderForm = document.getElementById("orderForm");
+        if (orderForm.checkValidity()) {
+            //Envoi d'une requete POST de commande
+            let contact = new Object();
+            contact.firstName = document.getElementById("prenom").value;
+            contact.lastName = document.getElementById("nom").value;
+            contact.address = document.getElementById("adresse").value;
+            contact.city = document.getElementById("ville").value;
+            contact.email = document.getElementById("email").value;
 
-        let products = Cart.getIdsForOrder();
+            let products = Cart.getIdsForOrder();
 
-        const request = APIConn.order(contact, products);
-        request.then(response => {
-            localStorage.order = JSON.stringify(response);
-            window.location = "confirmation.html";
-        })
-    }
-})
+            const request = APIConn.order(contact, products);
+            request.then(response => {
+                localStorage.order = JSON.stringify(response);
+                window.location = "confirmation.html";
+            })
+        }
+    })
+}
