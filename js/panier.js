@@ -25,11 +25,14 @@ function displayCart() {
     let cartItems = Cart.getAllItems();
     //Récupération de la cible pour l'affichage du panier
     const target = document.getElementById("panierList");
+    //Récupération de la cible pour l'affichage du prix total
+    const totalPriceDisplay = document.querySelectorAll(".totalPrice");
     //Variable pour le prix total
     target.innerHTML = "";
 
-    let totalPrice = 0;
     if (cartItems.length) {
+        let totalPrice = 0;
+        let totalArticles = 0;
         cartItems.forEach(element => {
             //Création des éléments d'un item
             const itemContainer = document.createElement("div");
@@ -58,6 +61,7 @@ function displayCart() {
                 if (response._id) {
                     //Mise à jour du prix total
                     totalPrice += (response.price * element.quantity);
+                    totalArticles += element.quantity;
                     //Peuplement des valeurs des éléments créés
                     img.src = response.imageUrl;
                     img.alt = response.name;
@@ -66,14 +70,27 @@ function displayCart() {
                     quantity.textContent = "Quantité " + element.quantity;
                     button.setAttribute("onclick", "removeItem('" + element.id + "')");
                     target.appendChild(itemContainer);
+
+                    //Affichage du prix total
+                    totalPriceDisplay.forEach(element => {
+                        element.textContent = "Sous-total (" + totalArticles + " articles) : " + totalPrice / 100 + "€"
+                    });
                 }
             });
         });
     } else {
-        //Sinon, on inscrit le code erreur dans la console et sur la page
+        //Sinon, on inscrit le code erreur dans la console et sur la page et on supprime le prix total et le formulaire
         console.warn("Panier vide !");
         let errMessage = new Alert("Oh non ! Votre panier est vide !", "Faites vite le plein en consultant notre sélection d'appareils !");
         errMessage.appendTo("panierList", 1);
+        //Suppression des affichages inutiles
+        const basketIntro = document.getElementById("basketIntro");
+        basketIntro.innerHTML = "";
+        totalPriceDisplay.forEach(element => {
+            element.className = "d-none";
+        });
+        const form = document.getElementById("orderForm");
+        form.innerHTML = "";
     }
 }
 //Affichage du panier
