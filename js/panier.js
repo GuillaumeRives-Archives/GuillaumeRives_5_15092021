@@ -86,6 +86,19 @@ function displayCart() {
                     form.classList = "row";
                     loader.remove();
                 }
+            }).catch(error => {
+                console.error(error);
+                //Sinon, on inscrit le code erreur dans la console et sur la page et on supprime le prix total et le formulaire
+                let errMessage = new Alert("Oh non ! Une erreur est survenue !");
+                errMessage.appendTo("panierList");
+                //Suppression des affichages inutiles
+                const basketIntro = document.getElementById("basketIntro");
+                basketIntro.innerHTML = "";
+                totalPriceDisplay.forEach(element => {
+                    element.className = "d-none";
+                });
+                form.classList = "row d-none";
+                loader.remove();
             });
         });
     } else {
@@ -136,6 +149,8 @@ if (orderBtn) {
             request.then(response => {
                 localStorage.order = JSON.stringify(response);
                 window.location = "confirmation.html";
+            }).catch(error => {
+                alert(error);
             })
         }
     })

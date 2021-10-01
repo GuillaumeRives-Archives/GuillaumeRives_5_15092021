@@ -46,10 +46,11 @@ requestCams.then(response => {
         const badge = new productsBadge("nbProducts", 1);
         badge.display();
 
-    } else {
-        //Sinon, on inscrit le code erreur dans la console et sur la page
-        console.error("Erreur au chargement des produits");
-        let errMessage = new Alert("Oups, une erreur est survenue", "Nous n'avons plus de produits disponibles ou nous rencontrons un problème...");
-        errMessage.appendTo("cameras");
     }
+}).catch(error => {
+    //Sinon, on inscrit le code erreur dans la console et sur la page
+    console.error(error);
+    loader.remove();
+    let errMessage = new Alert("Oups, une erreur est survenue", "Nous n'avons plus de produits disponibles ou nous rencontrons un problème...");
+    errMessage.appendTo("cameras");
 })

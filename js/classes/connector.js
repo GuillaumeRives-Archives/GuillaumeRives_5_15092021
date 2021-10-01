@@ -6,16 +6,22 @@ class Connector {
 
     //Récupère une caméra par son ID
     getCamById(id) {
-        return fetch(this.url + "/" + id)
-            .then(response => response.json())
-            .catch(error => error.message);
+        let fetchCamByID = async (url) => {
+            let response = await fetch(url);
+            let result = await response.json();
+            return result;
+        }
+        return fetchCamByID(this.url + "/" + id);
     }
 
     //Récupération de toutes les caméras et envoi de la promesse en résultat
     getAllCams() {
-        return fetch(this.url)
-            .then(response => response.json())
-            .catch(error => error.message);
+        let fetchCams = async (url) => {
+            let response = await fetch(url);
+            let result = await response.json();
+            return result;
+        }
+        return fetchCams(this.url);
     }
 
     order(contact, products) {
@@ -23,15 +29,18 @@ class Connector {
             "contact": contact,
             "products": products
         }
-        console.log(data);
-        return fetch(this.url + "/order", {
+        const url = this.url + "/order";
+        let fetchOrder = async (url, data) => {
+            let response = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
                     "Content-Type": "application/json"
                 }
-            })
-            .then(response => response.json())
-            .catch(error => error.message);
+            });
+            let result = await response.json();
+            return result;
+        }
+        return fetchOrder(url, data);
     }
 }
