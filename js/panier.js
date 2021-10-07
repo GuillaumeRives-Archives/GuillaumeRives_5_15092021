@@ -137,7 +137,7 @@ function removeItem(id) {
 //////////////////////////
 const orderBtn = document.getElementById("orderBtn");
 if (orderBtn) {
-    orderBtn.addEventListener("click", function (event) {
+    orderBtn.addEventListener("click", event => {
         event.preventDefault;
         const orderForm = document.getElementById("orderForm");
         if (orderForm.checkValidity()) {
