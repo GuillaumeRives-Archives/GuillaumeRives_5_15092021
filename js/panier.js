@@ -154,10 +154,8 @@ if (orderBtn) {
             const request = APIConn.order(contact, products);
             request.then(response => {
                 localStorage.order = JSON.stringify(response);
-                alert(JSON.stringify(response, null, 4));
                 window.location = "confirmation.html";
             }).catch(error => {
-                alert(error);
                 console.error(error);
             })
         }

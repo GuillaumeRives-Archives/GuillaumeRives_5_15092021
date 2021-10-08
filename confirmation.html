@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/styles.min.css">
     <title>Orinocam - Votre commande</title>
@@ -16,8 +16,8 @@
     <header class="navbar navbar-expand-sm navbar-dark bg-dark bg-gradient">
         <div class="container-fluid">
             <a href="index.html" class="navbar-brand"><i class="bi bi-camera2"></i> Orinocam</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbarContent" class="collapse navbar-collapse">
@@ -33,7 +33,46 @@
         </div>
     </header>
     <main class="flex-grow-1">
-
+        <div class="d-flex justify-content-center mt-5" id="loader">
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+        </div>
+        <div class="container mt-5 text-center d-none" id="orderContainer">
+            <i class="bi bi-bag-check-fill fs-1 text-primary"></i>
+            <h1 class="text-dark fw-normal">Confirmation de votre commande</h1>
+            <p><em id="firstName"></em>, nous vous remercions pour la commande que vous venez de passer chez nous. Voici le résumé de
+                celle-ci.</p>
+            <div class="container border shadow-sm p-3 rounded bg-light" id="orderDetails">
+                <h5>Numéro de commande</h5>
+                <em id="orderId"></em>
+                <h5 class="mt-4">Adresse de livraison</h5>
+                <em id="name"></em>
+                <em id="address"></em>
+                <em id="city"></em>
+                <h5 class="mt-4">Contact</h5>
+                <em id="mail"></em>
+                <h5 class="mt-4">Facture</h5>
+                <div class="container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="d-none d-md-table-cell" scope="col">Image</th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Quantité</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderItems">
+                        </tbody>
+                    </table>
+                    <h5>Prix total</h5>
+                    <em id="totalPrice" class="text-success"></em>
+                </div>
+            </div>
+            <p class="mt-4">Encore merci pour votre confiance &#128519</p>
+            <a href="index.html" class="btn btn-primary shadow mb-5">Retournez voir notre sélection !</a>
+        </div>
     </main>
     <footer class="container-fluid d-flex flex-wrap justify-content-around align-items-center py-3 border-top">
         <div class="col-md-4 d-flex align-items-center">
@@ -61,8 +100,10 @@
         </ul>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
+    <script src="js/classes/alert.js"></script>
+    <script src="js/commande.js"></script>
 </body>
 
 </html>

@@ -59,9 +59,10 @@ requestedCam.then(response => {
         //Création d'un élément à rajouter au panier
         CartItem.set(response._id, 1);
     }
-}).catch(error => {
-    //Sinon, on inscrit le code erreur dans la console et sur la page
+}).catch((error) => {
+    loader.remove();
     console.error(error);
+    //Sinon, on inscrit le code erreur dans la console et sur la page
     let errMessage = new Alert("Oups, une erreur est survenue", "Le produit n'existe peut-être plus ou nous rencontrons un problème...");
     const card = document.getElementById("cardContent");
     card.classList = "card p-2 shadow d-none";

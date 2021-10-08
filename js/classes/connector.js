@@ -8,7 +8,11 @@ class Connector {
     getCamById(id) {
         return new Promise((resolve, reject) => {
             fetch(this.url + "/" + id).then(response => {
-                resolve(response.json());
+                if (response.ok) {
+                    resolve(response.json());
+                } else {
+                    reject(response.status);
+                }
             }).catch(error => {
                 reject(error);
             });
@@ -19,7 +23,11 @@ class Connector {
     getAllCams() {
         return new Promise((resolve, reject) => {
             fetch(this.url).then(response => {
-                resolve(response.json());
+                if (response.ok) {
+                    resolve(response.json());
+                } else {
+                    reject(response.status);
+                }
             }).catch(error => {
                 reject(error);
             });
@@ -40,7 +48,11 @@ class Connector {
                     "Content-Type": "application/json"
                 }
             }).then(response => {
-                resolve(response.json());
+                if (response.ok) {
+                    resolve(response.json());
+                } else {
+                    reject(response.status);
+                }
             }).catch(error => {
                 reject(error);
             });
