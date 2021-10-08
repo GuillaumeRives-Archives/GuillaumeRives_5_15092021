@@ -89,6 +89,6 @@ try {
     loader.className = "d-none";
     mainContainer.classList = "container mt-5 text-center";
     mainContainer.innerHTML = "";
-    let errorMessage = new Alert("Oh non ! Une erreur est survenue !", "Vous n'avez peut-être rien commandé ou nous avons un problème...");
+    let errorMessage = new Alert("Oh non ! Une erreur est survenue !", "Vous n'avez peut-être rien commandé ou nous rencontrons un problème...");
     errorMessage.appendTo("orderContainer", 0);
 }
