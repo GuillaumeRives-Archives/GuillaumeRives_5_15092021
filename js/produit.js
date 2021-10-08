@@ -57,7 +57,7 @@ requestedCam.then(response => {
     let errMessage = new Alert("Oups, une erreur est survenue", "Le produit n'existe peut-être plus ou nous rencontrons un problème...");
     const card = document.getElementById("cardContent");
     card.classList = "card p-2 shadow d-none";
-    errMessage.appendTo("camInfo");
+    errMessage.appendTo("camInfo", 1);
 });
 
 //Ajout dans le panier

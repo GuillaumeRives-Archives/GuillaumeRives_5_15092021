@@ -14,7 +14,7 @@ const totalPriceElem = document.getElementById("totalPrice");
 try {
     const order = JSON.parse(localStorage.order);
     //Affichange de l'ID de commande
-    order.orderId ? orderId.textContent = order.orderId : orderId.textContent = "";
+    orderId.textContent = order.orderId ? order.orderId : "";
     //Affichange du contact
     if (order.contact) {
         firstnameField.textContent = order.contact.firstName;
@@ -22,7 +22,7 @@ try {
         address.textContent = order.contact.address + ",";
         city.textContent = order.contact.city;
     }
-    order.contact.email ? mail.textContent = order.contact.email : mail.textContent = "";
+    mail.textContent = order.contact.email ? order.contact.email : "";
     //Création d'une variable pour le calcul du prix total
     let totalPrice = 0;
     //Création d'une variable afin de vérifier qu'un produit a déjà été ajouté au résumé (calcul des quantités)
