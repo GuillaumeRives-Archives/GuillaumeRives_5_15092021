@@ -11,17 +11,8 @@ const form = document.getElementById("orderForm");
 const loader = document.getElementById("loader");
 
 //Récupère et affiche le nombre d'articles dans le panier
-function displayNbArticles(target) {
-    let nbArticlesCount = Cart.getItemsCount();
-    if (nbArticlesCount) {
-        target.classList = "badge rounded-pill bg-danger";
-        target.textContent = nbArticlesCount;
-    } else {
-        target.classList = "badge rounded-pill bg-danger d-none";
-    }
-}
 const nbArticles = document.getElementById("nbArticles");
-displayNbArticles(nbArticles);
+Cart.displayNbArticles(nbArticles);
 
 ///////////////////////
 //Affichage du panier//
@@ -129,7 +120,7 @@ displayCart()
 function removeItem(id) {
     Cart.removeItem(id);
     displayCart();
-    displayNbArticles(nbArticles);
+    Cart.displayNbArticles(nbArticles);
 }
 
 //////////////////////////

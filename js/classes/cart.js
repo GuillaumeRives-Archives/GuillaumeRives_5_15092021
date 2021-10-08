@@ -84,6 +84,17 @@ class cart {
         }
         return products;
     }
+
+    //Affiche le nombre d'articles dans le menu
+    displayNbArticles(target) {
+        let nbArticlesCount = this.getItemsCount();
+        if (nbArticlesCount) {
+            target.classList = "badge rounded-pill bg-danger";
+            target.textContent = nbArticlesCount;
+        } else {
+            target.classList = "badge rounded-pill bg-danger d-none";
+        }
+    }
 }
 
 //Classe d'un objet présent dans le panier

@@ -10,17 +10,8 @@ const Cart = new cart();
 //Récupère le loader
 const loader = document.getElementById("loader");
 
-function displayNbArticles(target) {
-    let nbArticlesCount = Cart.getItemsCount();
-    if (nbArticlesCount) {
-        target.classList = "badge rounded-pill bg-danger";
-        target.textContent = nbArticlesCount;
-    } else {
-        target.classList = "badge rounded-pill bg-danger d-none";
-    }
-}
 const nbArticles = document.getElementById("nbArticles");
-displayNbArticles(nbArticles);
+Cart.displayNbArticles(nbArticles);
 
 //Lorsque la réponse est récupérée
 requestCams.then(response => {
@@ -46,6 +37,9 @@ requestCams.then(response => {
         const badge = new productsBadge("nbProducts", 1);
         badge.display();
 
+    } else {
+        let errMessage = new Alert("Oups, aucun produit n'est disponible pour le moment !", "Nous n'avons plus de produits disponibles, revenez nous voir plus tard...");
+        errMessage.appendTo("cameras");
     }
 }).catch(error => {
     //Sinon, on inscrit le code erreur dans la console et sur la page
