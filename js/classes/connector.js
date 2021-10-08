@@ -40,10 +40,11 @@ class Connector {
             "products": products
         }
         const url = this.url + "/order";
+        let rawData = JSON.stringify(data);
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: "POST",
-                body: JSON.stringify(data),
+                body: rawData,
                 headers: {
                     "Content-Type": "application/json"
                 }
