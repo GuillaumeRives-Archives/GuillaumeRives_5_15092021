@@ -86,7 +86,7 @@ function displayCart() {
             }).catch(error => {
                 console.error(error);
                 //Sinon, on inscrit le code erreur dans la console et sur la page et on supprime le prix total et le formulaire
-                let errMessage = new Alert("Oh non ! Une erreur est survenue !");
+                let errMessage = new Alert("Oh non ! Une erreur est survenue !", "Nous rencontrons un problème...");
                 errMessage.appendTo("panierList");
                 //Suppression des affichages inutiles
                 const basketIntro = document.getElementById("basketIntro");
