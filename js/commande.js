@@ -19,7 +19,7 @@ try {
     if (order.contact) {
         firstnameField.textContent = order.contact.firstName;
         nameField.textContent = order.contact.firstName + " " + order.contact.lastName + ",";
-        address.textContent = order.contact.address;
+        address.textContent = order.contact.address + ",";
         city.textContent = order.contact.city;
     }
     order.contact.email ? mail.textContent = order.contact.email : mail.textContent = "";
