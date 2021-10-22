@@ -36,21 +36,32 @@ function displayCart() {
             const img = document.createElement("img");
             const title = document.createElement("h5");
             const price = document.createElement("p");
+            const quantContainer = document.createElement("div");
+            const quantRemove = document.createElement("button");
             const quantity = document.createElement("p");
+            const quantAdd = document.createElement("button");
             const button = document.createElement("button");
             //Ajout des classes aux éléments
             itemContainer.classList = "p-2 col-sm-12 bg-white border rounded shadow-sm mt-3 d-flex flex-column flex-sm-row";
-            img.classList = "rounded border mx-auto d-block";
+            img.classList = "rounded border mx-auto d-block d-sm-none d-md-block";
             title.classList = "flex-grow-1 align-self-center m-2";
             price.classList = "flex-grow-1 align-self-center m-2";
-            quantity.classList = "flex-grow-1 align-self-center m-2";
+            quantity.classList = "align-self-center m-2";
+            quantContainer.classList = "d-flex flex-grow-1 justify-content-center";
+            quantAdd.classList = "btn btn-link text-decoration-none";
+            quantAdd.textContent = "+";
+            quantRemove.classList = "btn btn-link text-decoration-none";
+            quantRemove.textContent = "-";
             button.classList = "btn btn-danger";
             button.textContent = "Supprimer";
             //Hierarchisation des éléments
             itemContainer.appendChild(img);
             itemContainer.appendChild(title);
             itemContainer.appendChild(price);
-            itemContainer.appendChild(quantity);
+            quantContainer.appendChild(quantRemove);
+            quantContainer.appendChild(quantity);
+            quantContainer.appendChild(quantAdd);
+            itemContainer.appendChild(quantContainer);
             itemContainer.appendChild(button);
             //Récupération des informations de la caméra à partir de son ID
             const requestedCam = APIConn.getCamById(element.id);
@@ -67,8 +78,10 @@ function displayCart() {
                         style: 'currency',
                         currency: 'EUR'
                     }).format(response.price / 100);
+                    quantRemove.setAttribute("onclick", "removeItem('" + element.id + "')");
+                    quantAdd.setAttribute("onclick", "addItem('" + element.id + "')");
                     quantity.textContent = "Quantité " + element.quantity;
-                    button.setAttribute("onclick", "removeItem('" + element.id + "')");
+                    button.setAttribute("onclick", "deleteItem('" + element.id + "')");
                     target.appendChild(itemContainer);
 
                     //Affichage du prix total
@@ -117,8 +130,22 @@ function displayCart() {
 displayCart()
 
 //Fonction du suppression d'un item du panier
+function deleteItem(id) {
+    Cart.deleteItem(id);
+    displayCart();
+    Cart.displayNbArticles(nbArticles);
+}
+
+//Fonction d'ajout d'un item
+function addItem(id) {
+    Cart.quantAdd(id);
+    displayCart();
+    Cart.displayNbArticles(nbArticles);
+}
+
+//Fonction de soustraction d'un item
 function removeItem(id) {
-    Cart.removeItem(id);
+    Cart.quantRemove(id);
     displayCart();
     Cart.displayNbArticles(nbArticles);
 }

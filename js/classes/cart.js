@@ -24,13 +24,47 @@ class cart {
         }
     }
 
-    removeItem(id) {
+    //Modification positive de la quantité d'un item.
+    quantAdd(id) {
+        let localCart = [];
+        if (localStorage.cart) {
+            localCart = JSON.parse(localStorage.cart);
+        }
+        localCart.forEach(element => {
+            if (element.id === id) {
+                element.quantity += 1;
+            }
+        });
+        localStorage.setItem("cart", JSON.stringify(localCart));
+    }
+    //Modification negative de la quantité d'un item.
+    quantRemove(id) {
+        let localCart = [];
+        if (localStorage.cart) {
+            localCart = JSON.parse(localStorage.cart);
+        }
+        localCart.forEach(element => {
+            if (element.id === id) {
+                if (element.quantity >= 2) {
+                    element.quantity -= 1;
+                }
+            }
+        })
+        if (localCart.length) {
+            localStorage.setItem("cart", JSON.stringify(localCart));
+        } else {
+            localStorage.removeItem("cart");
+        }
+    }
+
+    //Suppression d'un item.
+    deleteItem(id) {
         //Récupération du panier dans le localStorage
         let localCart = [];
         if (localStorage.cart) {
             localCart = JSON.parse(localStorage.cart);
         }
-        localCart.forEach(function (element, index) {
+        localCart.forEach((element, index) => {
             if (element.id === id) {
                 localCart.splice(index, 1);
             }
