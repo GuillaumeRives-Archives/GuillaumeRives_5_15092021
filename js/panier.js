@@ -78,8 +78,8 @@ function displayCart() {
                         style: 'currency',
                         currency: 'EUR'
                     }).format(response.price / 100);
-                    quantRemove.setAttribute("onclick", "removeItem('" + element.id + "')");
-                    quantAdd.setAttribute("onclick", "addItem('" + element.id + "')");
+                    quantRemove.setAttribute("onclick", "decreaseItem('" + element.id + "')");
+                    quantAdd.setAttribute("onclick", "increaseItem('" + element.id + "')");
                     quantity.textContent = "Quantité " + element.quantity;
                     button.setAttribute("onclick", "deleteItem('" + element.id + "')");
                     target.appendChild(itemContainer);
@@ -137,14 +137,14 @@ function deleteItem(id) {
 }
 
 //Fonction d'ajout d'un item
-function addItem(id) {
+function increaseItem(id) {
     Cart.quantAdd(id);
     displayCart();
     Cart.displayNbArticles(nbArticles);
 }
 
 //Fonction de soustraction d'un item
-function removeItem(id) {
+function decreaseItem(id) {
     Cart.quantRemove(id);
     displayCart();
     Cart.displayNbArticles(nbArticles);
