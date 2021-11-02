@@ -78,10 +78,18 @@ function displayCart() {
                         style: 'currency',
                         currency: 'EUR'
                     }).format(response.price / 100);
-                    quantRemove.setAttribute("onclick", "decreaseItem('" + element.id + "')");
+                    if (element.quantity === 1) {
+                        quantRemove.setAttribute("data-bs-toggle", "modal");
+                        quantRemove.setAttribute("data-bs-target", "#panierModal");
+                        quantRemove.setAttribute("data-bs-itemID", element.id);
+                    } else {
+                        quantRemove.setAttribute("onclick", "decreaseItem('" + element.id + "')");
+                    }
                     quantAdd.setAttribute("onclick", "increaseItem('" + element.id + "')");
                     quantity.textContent = "Quantité " + element.quantity;
-                    button.setAttribute("onclick", "deleteItem('" + element.id + "')");
+                    button.setAttribute("data-bs-toggle", "modal");
+                    button.setAttribute("data-bs-target", "#panierModal");
+                    button.setAttribute("data-bs-itemID", element.id);
                     target.appendChild(itemContainer);
 
                     //Affichage du prix total
@@ -126,6 +134,23 @@ function displayCart() {
         loader.remove();
     }
 }
+
+//Gestion du modal de suppression d'un item
+const modalDeleteBtn = document.getElementById("modalDeleteBtn");
+const modal = new bootstrap.Modal(document.getElementById("panierModal"), {
+    keyboard: false
+});
+document.getElementById("panierModal").addEventListener("show.bs.modal", event => {
+    let button = event.relatedTarget;
+    modalDeleteBtn.setAttribute("data-bs-itemID", button.getAttribute("data-bs-itemID"));
+});
+modalDeleteBtn.addEventListener("click", event => {
+    let button = event.target;
+    let productID = button.getAttribute("data-bs-itemID");
+    deleteItem(productID);
+    modal.hide();
+});
+
 //Affichage du panier
 displayCart()
 

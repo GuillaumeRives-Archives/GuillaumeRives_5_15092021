@@ -36,6 +36,25 @@
         </div>
     </header>
     <main class="flex-grow-1 bg-light">
+        <!--Modal-->
+        <div class="modal" tabindex="-1" id="panierModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Suppression de l'article</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Etes-vous sûr de vouloir supprimer cet article ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="modalDeleteBtn" type="button" class="btn btn-danger">Supprimer l'article</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Début du panier-->
         <section class="container mt-5 text-center">
             <div id="basketIntro">
                 <i class="bi bi-bag-check-fill fs-1 text-primary"></i>
