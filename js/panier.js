@@ -44,8 +44,8 @@ function displayCart() {
             //Ajout des classes aux éléments
             itemContainer.classList = "p-2 col-sm-12 bg-white border rounded shadow-sm mt-3 row align-items-center";
             img.classList = "col-12 col-md-1 rounded border d-sm-none d-md-block p-0";
-            title.classList = "col justify-content-center m-2";
-            price.classList = "col justify-content-center m-2";
+            title.classList = "col-2 m-2";
+            price.classList = "col m-2";
             quantContainer.classList = "col d-flex flex-grow-1 justify-content-center";
             quantity.classList = "align-self-center m-2";
             quantAdd.classList = "btn btn-link text-decoration-none";
