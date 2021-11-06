@@ -40,6 +40,18 @@
         <div id="imgOverlay">
             <!--Utilisé pour le filtre sur l'image de fond-->
         </div>
+        <!-- Toast -->
+        <div class="position-fixed top-0 start-50 translate-middle-x mt-5" style="z-index: 11">
+            <div id="productToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img id="toastImg" src="" class="rounded me-2" alt="" width=16 height=16>
+                    <strong class="me-auto" id="toastTitle"></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" id="toastMessage">
+                </div>
+            </div>
+        </div>
         <section class="container" id="camInfo">
             <div class="d-flex justify-content-center" id="loader">
                 <div class=" spinner-grow text-primary" role="status">

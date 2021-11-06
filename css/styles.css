@@ -52,4 +52,13 @@ input:invalid {
     width: 70px;
     height: 70px;
   }
+}
+
+#panierList > div > button {
+  height: auto;
+}
+@media screen and (min-width: 576px) {
+  #panierList > div > button {
+    height: 100%;
+  }
 }/*# sourceMappingURL=styles.css.map */

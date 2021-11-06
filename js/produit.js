@@ -47,6 +47,14 @@ requestedCam.then(response => {
             optionIndex++;
         });
         card.classList = "card p-2 shadow";
+        //Création du toast relatif au produit
+        let toastTitle = document.getElementById("toastTitle");
+        let toastImg = document.getElementById("toastImg");
+        let toastMessage = document.getElementById("toastMessage");
+        toastTitle.textContent = response.name;
+        toastImg.src = response.imageUrl;
+        toastImg.alt = response.name;
+        toastMessage.innerHTML = "<a href='panier.html'>Votre panier</a> a été mis à jour !";
         //Création d'un élément à rajouter au panier
         CartItem.set(response._id, 1);
     }
@@ -67,4 +75,8 @@ addButton.addEventListener("click", function () {
     CartItem.quantity = parseInt(quantity.value, 10);
     Cart.addItem(CartItem);
     Cart.displayNbArticles(nbArticles);
+
+    let toastContainer = document.getElementById("productToast");
+    let toast = new bootstrap.Toast(toastContainer);
+    toast.show();
 });

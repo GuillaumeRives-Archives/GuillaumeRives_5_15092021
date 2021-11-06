@@ -42,17 +42,17 @@ function displayCart() {
             const quantAdd = document.createElement("button");
             const button = document.createElement("button");
             //Ajout des classes aux éléments
-            itemContainer.classList = "p-2 col-sm-12 bg-white border rounded shadow-sm mt-3 d-flex flex-column flex-sm-row";
-            img.classList = "rounded border mx-auto d-block d-sm-none d-md-block";
-            title.classList = "flex-grow-1 align-self-center m-2";
-            price.classList = "flex-grow-1 align-self-center m-2";
+            itemContainer.classList = "p-2 col-sm-12 bg-white border rounded shadow-sm mt-3 row align-items-center";
+            img.classList = "col-12 col-md-1 rounded border d-sm-none d-md-block p-0";
+            title.classList = "col justify-content-center m-2";
+            price.classList = "col justify-content-center m-2";
+            quantContainer.classList = "col d-flex flex-grow-1 justify-content-center";
             quantity.classList = "align-self-center m-2";
-            quantContainer.classList = "d-flex flex-grow-1 justify-content-center";
             quantAdd.classList = "btn btn-link text-decoration-none";
             quantAdd.textContent = "+";
             quantRemove.classList = "btn btn-link text-decoration-none";
             quantRemove.textContent = "-";
-            button.classList = "btn btn-danger";
+            button.classList = "col-12 col-sm col-lg-2 btn btn-danger";
             button.textContent = "Supprimer";
             //Hierarchisation des éléments
             itemContainer.appendChild(img);
